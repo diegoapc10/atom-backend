@@ -16,10 +16,13 @@ export const getUsuarios = async (req: Request, res: Response) => {
         })
 
         res.json({
+            status: true,
             usuarios
         });
     } catch (error) {
+        console.log(error);
         res.status(500).json({
+            status: false,
             msg: 'Error al obtener usuarios'
         })
     }
@@ -42,10 +45,13 @@ export const getUsuarioById = async (req: Request, res: Response) => {
         usuario.id = docUsuario.id;
 
         res.json({
+            status: true,
             usuario
         });
     } catch (error) {
+        console.log(error);
         res.status(500).json({
+            status: false,
             msg: 'Error al obtener usuario'
         });
     }
@@ -66,10 +72,13 @@ export const getUsuarioByEmail = async (req: Request, res: Response) => {
         });
 
         res.json({
+            status: true,
             usuario
         });
     } catch (error) {
+        console.log(error);
         res.status(500).json({
+            status: false,
             msg: 'Error al obtener el usuario'
         })
     }
@@ -112,11 +121,14 @@ export const postUsuario = async (req: Request, res: Response) => {
         }
         
         res.json({
+            status: true,
             id: resultCreate.id
         });
 
     } catch (error) {
+        console.log(error);
         res.status(500).json({
+            status: false,
             msg: 'Error al crear usuario'
         })
     }

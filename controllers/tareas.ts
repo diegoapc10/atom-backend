@@ -18,11 +18,13 @@ export const GetTareas = async(req: Request, res: Response) => {
         });
 
         res.json({
+            status: true,
             tareas
         });
     } catch (error) {
         console.log(error);
         res.status(500).json({
+            status: false,
             msg: 'Error al obtener sus tareas'
         });
     }
@@ -49,11 +51,14 @@ export const PostTarea = async(req: Request, res: Response) => {
         }
 
         res.json({
+            status: true,
             id: docTarea.id
         });
 
     } catch (error) {
+        console.log(error);
         res.status(500).json({
+            status: false,
             msg: 'Error al insertar la tarea'
         });
     }
@@ -90,7 +95,9 @@ export const PutTarea = async(req: Request, res: Response) => {
             status: true
         });
     } catch (error) {
+        console.log(error);
         res.status(500).json({
+            status: false,
             msg: 'Error al modificar tarea'
         });
     }
@@ -115,7 +122,9 @@ export const DeleteTarea = async(req: Request, res: Response) => {
             status: true
         })
     } catch (error) {
+        console.log(error);
         res.status(500).json({
+            status: false,
             msg: 'Error al eliminar tarea'
         });
     }

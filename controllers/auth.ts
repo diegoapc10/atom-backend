@@ -33,11 +33,14 @@ export const login = async (req: Request, res: Response) => {
         const token = await generarJWT(usuario.id);
 
         res.json({
+            status: true,
             token
         });
 
     } catch (error) {
+        console.log(error);
         res.status(500).json({
+            status: false,
             msg: 'Error en el login'
         })
     }
