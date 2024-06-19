@@ -84,7 +84,7 @@ const PutTarea = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         if (body.descripcion) {
             tarea.descripcion = body.descripcion;
         }
-        if (body.estado) {
+        if (body.estado !== undefined) {
             tarea.estado = body.estado;
         }
         tarea.fecha = new Date();

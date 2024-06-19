@@ -83,7 +83,7 @@ export const PutTarea = async(req: Request, res: Response) => {
             tarea.descripcion = body.descripcion;
         }
 
-        if( body.estado ){
+        if( body.estado !== undefined  ){
             tarea.estado = body.estado;
         }
 
