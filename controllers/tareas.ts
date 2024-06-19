@@ -12,11 +12,13 @@ export const GetTareas = async(req: Request, res: Response) => {
         const ordenado = await docTareas.orderBy('fecha','desc').get();
         
         ordenado.forEach(doc => {
+            let fecha = new Date(doc.data().fecha.toDate());
             const task = doc.data();
             task.id = doc.id;
+            task.fecha = fecha;
             tareas.push(task as Tarea);
         });
-
+        
         res.json({
             status: true,
             tareas
@@ -109,8 +111,6 @@ export const DeleteTarea = async(req: Request, res: Response) => {
     
         const collectionTareas = db.collection('tareas');
         const docEliminado = await collectionTareas.doc(params.id).delete();
-
-        console.log(docEliminado);
 
         if( !docEliminado ){
             return res.status(400).json({
