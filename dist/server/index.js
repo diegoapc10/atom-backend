@@ -44,7 +44,9 @@ class Server {
                 if (usuarios.length === 0) {
                     throw new Error('Database Offine');
                 }
-                console.log('Database Online');
+                else {
+                    console.log('Database Online');
+                }
             }
             catch (error) {
                 throw new Error(error);

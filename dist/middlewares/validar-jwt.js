@@ -12,10 +12,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validarJWT = void 0;
+exports.validarJwt = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const conexion_1 = __importDefault(require("../db/conexion"));
-const validarJWT = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const validarJwt = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     let token = req.header('authorization');
     if (!token) {
         return res.status(401).json({
@@ -49,5 +49,5 @@ const validarJWT = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
         });
     }
 });
-exports.validarJWT = validarJWT;
+exports.validarJwt = validarJwt;
 //# sourceMappingURL=validar-jwt.js.map

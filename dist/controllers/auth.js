@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.login = void 0;
 const conexion_1 = __importDefault(require("../db/conexion"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
-const generarJWT_1 = require("../helpers/generarJWT");
+const generar_jwt_1 = require("../helpers/generar-jwt");
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let usuario;
@@ -38,13 +38,17 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 msg: 'El usuario se encuentra bloqueado'
             });
         }
-        const token = yield (0, generarJWT_1.generarJWT)(usuario.id);
+        const token = yield (0, generar_jwt_1.generarJwt)(usuario.id);
         res.json({
-            token
+            status: true,
+            token,
+            usuario
         });
     }
     catch (error) {
+        console.log(error);
         res.status(500).json({
+            status: false,
             msg: 'Error en el login'
         });
     }

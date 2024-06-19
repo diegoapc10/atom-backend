@@ -22,17 +22,21 @@ const GetTareas = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const docTareas = yield collectionTareas.where('usuarioRef', '==', `usuarios/${params.usuario_ref}`);
         const ordenado = yield docTareas.orderBy('fecha', 'desc').get();
         ordenado.forEach(doc => {
+            let fecha = new Date(doc.data().fecha.toDate());
             const task = doc.data();
             task.id = doc.id;
+            task.fecha = fecha;
             tareas.push(task);
         });
         res.json({
+            status: true,
             tareas
         });
     }
     catch (error) {
         console.log(error);
         res.status(500).json({
+            status: false,
             msg: 'Error al obtener sus tareas'
         });
     }
@@ -45,6 +49,7 @@ const PostTarea = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             titulo: params.titulo,
             descripcion: params.descripcion,
             fecha: new Date(),
+            estado: false,
             usuarioRef: `usuarios/${params.usuario_ref}`
         };
         const collectionTareas = conexion_1.default.collection('tareas');
@@ -55,11 +60,14 @@ const PostTarea = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             });
         }
         res.json({
+            status: true,
             id: docTarea.id
         });
     }
     catch (error) {
+        console.log(error);
         res.status(500).json({
+            status: false,
             msg: 'Error al insertar la tarea'
         });
     }
@@ -76,6 +84,9 @@ const PutTarea = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         if (body.descripcion) {
             tarea.descripcion = body.descripcion;
         }
+        if (body.estado) {
+            tarea.estado = body.estado;
+        }
         tarea.fecha = new Date();
         const collectionTareas = conexion_1.default.collection('tareas');
         const docModificado = yield collectionTareas.doc(params.id).update(tarea);
@@ -89,7 +100,9 @@ const PutTarea = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
     }
     catch (error) {
+        console.log(error);
         res.status(500).json({
+            status: false,
             msg: 'Error al modificar tarea'
         });
     }
@@ -100,7 +113,6 @@ const DeleteTarea = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         const params = req.params;
         const collectionTareas = conexion_1.default.collection('tareas');
         const docEliminado = yield collectionTareas.doc(params.id).delete();
-        console.log(docEliminado);
         if (!docEliminado) {
             return res.status(400).json({
                 msg: 'No se pudo eliminar la tarea'
@@ -111,7 +123,9 @@ const DeleteTarea = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         });
     }
     catch (error) {
+        console.log(error);
         res.status(500).json({
+            status: false,
             msg: 'Error al eliminar tarea'
         });
     }

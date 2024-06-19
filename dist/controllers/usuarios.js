@@ -26,11 +26,14 @@ const getUsuarios = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             usuarios.push(usuario);
         });
         res.json({
+            status: true,
             usuarios
         });
     }
     catch (error) {
+        console.log(error);
         res.status(500).json({
+            status: false,
             msg: 'Error al obtener usuarios'
         });
     }
@@ -49,11 +52,14 @@ const getUsuarioById = (req, res) => __awaiter(void 0, void 0, void 0, function*
         let usuario = docUsuario.data();
         usuario.id = docUsuario.id;
         res.json({
+            status: true,
             usuario
         });
     }
     catch (error) {
+        console.log(error);
         res.status(500).json({
+            status: false,
             msg: 'Error al obtener usuario'
         });
     }
@@ -71,11 +77,14 @@ const getUsuarioByEmail = (req, res) => __awaiter(void 0, void 0, void 0, functi
             usuario = user;
         });
         res.json({
+            status: true,
             usuario
         });
     }
     catch (error) {
+        console.log(error);
         res.status(500).json({
+            status: false,
             msg: 'Error al obtener el usuario'
         });
     }
@@ -110,11 +119,14 @@ const postUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             });
         }
         res.json({
+            status: true,
             id: resultCreate.id
         });
     }
     catch (error) {
+        console.log(error);
         res.status(500).json({
+            status: false,
             msg: 'Error al crear usuario'
         });
     }
