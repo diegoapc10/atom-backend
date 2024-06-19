@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import db from '../db/conexion';
 import { Usuario } from '../models/usuario';
 import bcryptjs from 'bcryptjs'
-import { generarJWT } from "../helpers/generarJWT";
+import { generarJwt } from "../helpers/generar-jwt";
 
 export const login = async (req: Request, res: Response) => {
     try {
@@ -30,7 +30,7 @@ export const login = async (req: Request, res: Response) => {
             });
         }
 
-        const token = await generarJWT(usuario.id);
+        const token = await generarJwt(usuario.id);
 
         res.json({
             status: true,

@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import db from '../db/conexion';
 import { Usuario } from "../models/usuario";
 
-export const validarJWT = async( req: any, res: Response, next: NextFunction ) => {
+export const validarJwt = async( req: any, res: Response, next: NextFunction ) => {
     let token: string = req.header('authorization');
     if( !token ){
         return res.status(401).json({
