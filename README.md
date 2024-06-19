@@ -20,4 +20,11 @@ El proyecto esta se realizó con una arquitectura en capas
 - `routes`: Capa Routes donde se encuentra los endpoints a exponer en el Server
 - `controllers`: Capa Controller donde se encuentra la logica de los Endpoint
 - `db`: Capa DB aqui se encuentra la configuracion y conexion a `Firestore Database`
-    
+
+## NOMENCLATURAS
+- Kebab Case
+  * Para el nombre de los archivos
+- Camel Case
+  * Para nombrar variables, metodos y funciones
+- Pascal Case
+  * Para nombrar clases, interfaces.
