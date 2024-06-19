@@ -40,6 +40,7 @@ export const PostTarea = async(req: Request, res: Response) => {
             titulo: params.titulo,
             descripcion: params.descripcion,
             fecha:  new Date(),
+            estado: false,
             usuarioRef: `usuarios/${params.usuario_ref}`
         }
 
@@ -79,7 +80,11 @@ export const PutTarea = async(req: Request, res: Response) => {
         }
 
         if( body.descripcion ){
-            tarea.descripcion = body.descripcion
+            tarea.descripcion = body.descripcion;
+        }
+
+        if( body.estado ){
+            tarea.estado = body.estado;
         }
 
         tarea.fecha = new Date();
